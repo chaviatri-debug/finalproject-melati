@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JagaMental - Pendaftaran Konseling</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        body { 
+            background: linear-gradient(135deg, #f4f7f6 0%, #e2eae5 100%); 
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+        /* Mengubah tampilan Navbar agar lebih elegan */
+        .navbar-custom {
+            background-color: #78937d;
+            backdrop-filter: blur(10px);
+        }
+        /* Custom Card dengan bayangan super lembut */
+        .card-custom {
+            border: none;
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(120, 147, 125, 0.15);
+        }
+        /* Desain form input yang modern */
+        .form-control:focus, .form-select:focus {
+            border-color: #78937d;
+            box-shadow: 0 0 0 0.25rem rgba(120, 147, 125, 0.25);
+        }
+        /* Box Total Tagihan ala aplikasi Fintech */
+        .total-box {
+            background-color: #f8faf9;
+            border: 2px dashed #e2eae5;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .total-box h2 {
+            letter-spacing: -1px;
+        }
+        /* Tombol dengan efek Hover smooth */
+        .btn-custom {
+            background-color: #78937d;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #5f7864;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 120, 100, 0.3);
+        }
+        /* Desain area QRIS */
+        .timer-badge { 
+            font-size: 2rem; 
+            font-weight: 800; 
+            color: #dc3545;
+            letter-spacing: 2px;
+        }
+        .qris-box { 
+            max-width: 200px; 
+            border: 3px solid #78937d; 
+            padding: 15px; 
+            margin: 15px auto; 
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Gaya dasar untuk kartu paket */
+        .style-card-paket {
+            border-color: #e2eae5;
+            transition: all 0.2s ease;
+            border-radius: 14px;
+        }
+        .style-card-paket:hover {
+            border-color: #78937d;
+            background-color: #f8faf9;
+        }
+        /* Gaya ketika kartu paket dipilih/aktif */
+        .active-paket {
+            border-color: #78937d !important;
+            background-color: #f0f5f2 !important;
+            box-shadow: 0 4px 12px rgba(120, 147, 125, 0.1);
+        }
+        .active-paket .badge {
+            background-color: #78937d !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #4db6ac;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i> JagaMental
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-semibold">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="edukasi.html">Edukasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tracker.html">Mood Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bantuan.html">Bantuan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="konseling.html">Konseling</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-7">
+                <div class="card card-custom p-4 p-md-5">
+                    
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">🤝</div>
+                        <h3 class="fw-bold text-dark">Ambil Langkah Pertamamu</h3>
+                        <p class="text-muted small">Isi formulir singkat di bawah untuk mensimulasikan pendaftaran sesi curhat yang aman dan terjaga kerahasiaannya.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-secondary"><i class="bi bi-person-fill me-2"></i>Nama Lengkap / Inisial</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="Contoh: Cahyani">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-secondary mb-3">
+                            <i class="bi bi-heart-pulse-fill me-2 text-success"></i>Pilih Paket Konseling
+                        </label>
+                        
+                        <div class="row g-3" id="paketContainer">
+                            <div class="col-12">
+                                <label class="card p-3 border-2 h-100 style-card-paket active-paket" style="cursor: pointer;">
+                                    <input type="radio" name="paketOpsi" value="0" class="d-none" checked>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">🧠 Konseling Sebaya</h6>
+                                            <small class="text-muted">Cocok untuk curhat ringan sesama mahasiswa</small>
+                                        </div>
+                                        <span class="badge bg-success-subtle text-success fw-bold p-2 fs-6">Gratis</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="card p-3 border-2 h-100 style-card-paket" style="cursor: pointer;">
+                                    <input type="radio" name="paketOpsi" value="50000" class="d-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">👩‍⚕️ Psikolog Profesional (1 Sesi)</h6>
+                                            <small class="text-muted">Penanganan intensif bersama ahlinya</small>
+                                        </div>
+                                        <span class="badge bg-light text-dark fw-bold p-2 fs-6">Rp50.000</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="card p-3 border-2 h-100 style-card-paket" style="cursor: pointer;">
+                                    <input type="radio" name="paketOpsi" value="90000" class="d-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">🔥 Sesi Intensif Khusus (2 Sesi)</h6>
+                                            <small class="text-muted">Pendampingan berkala untuk pemulihan optimal</small>
+                                        </div>
+                                        <span class="badge bg-light text-dark fw-bold p-2 fs-6">Rp90.000</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-text text-muted mt-3">
+                            <i class="bi bi-info-circle me-1 text-success"></i> Semua sesi dilakukan daring via Zoom/Meet selama 60 menit.
+                        </div>
+                    </div>
+
+                    <div class="total-box p-4 text-center my-4">
+                        <span class="text-muted text-uppercase fw-bold small tracking-wider">Total Tagihan Anda</span>
+                        <h2 class="fw-extrabold text-success mt-1 mb-0" id="textTotal">Rp0</h2>
+                    </div>
+
+                    <button class="btn btn-custom w-100 fw-bold py-3 fs-5 shadow" id="btnBayar">
+                        <i class="bi bi-shield-check me-2"></i>Proses &amp; Bayar Sekarang
+                    </button>
+
+                    <div id="areaQRIS" class="mt-4 text-center d-none animate__animated animate__fadeIn">
+                        <hr class="my-4">
+                        <p class="text-danger fw-bold mb-1"><i class="bi bi-hourglass-split me-1"></i> Selesaikan pembayaran sebelum waktu habis:</p>
+                        <div class="timer-badge mb-2" id="timerBox">01:00:00</div>
+                        
+                        <div class="qris-box">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=JagaMentalLunas" alt="QRIS Dummy" class="img-fluid rounded-3">
+                        </div>
+                        <p class="small text-muted mt-2"><i class="bi bi-qr-code-scan me-1"></i> Buka aplikasi e-wallet pilihanmu, lalu pindai kode QR di atas.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textTotal = document.getElementById('textTotal');
+        const btnBayar = document.getElementById('btnBayar');
+        const areaQRIS = document.getElementById('areaQRIS');
+        const timerBox = document.getElementById('timerBox');
+        const kartuPaket = document.querySelectorAll('.style-card-paket');
+
+        // Logika interaksi klik kartu & update harga otomatis
+        kartuPaket.forEach(card => {
+            card.addEventListener('click', function() {
+                // 1. Hilangkan efek aktif dari semua kartu terlebih dahulu
+                kartuPaket.forEach(c => c.classList.remove('active-paket'));
+                
+                // 2. Tambahkan efek aktif ke kartu yang baru saja diklik
+                this.classList.add('active-paket');
+                
+                // 3. Ambil radio button di dalam kartu ini dan centang otomatis
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // 4. Update harga di kotak total tagihan
+                let harga = parseInt(radio.value) || 0;
+                textTotal.innerText = "Rp" + harga.toLocaleString('id-ID');
+            });
+        });
+
+        // Trigger Pembayaran & Timer 1 Jam
+        btnBayar.addEventListener('click', function() {
+            areaQRIS.classList.remove('d-none');
+            btnBayar.disabled = true;
+            btnBayar.innerHTML = '<i class="bi bi-lock-fill me-2"></i>Menunggu Pembayaran...';
+
+            let totalDetik = 60 * 60; // 1 Jam = 3600 detik
+            const hitungMundur = setInterval(() => {
+                let jam = Math.floor(totalDetik / 3600);
+                let menit = Math.floor((totalDetik % 3600) / 60);
+                let detik = totalDetik % 60;
+
+                jam = jam < 10 ? '0' + jam : jam;
+                menit = menit < 10 ? '0' + menit : menit;
+                detik = detik < 10 ? '0' + detik : detik;
+
+                timerBox.innerText = `${jam}:${menit}:${detik}`;
+
+                if (totalDetik <= 0) {
+                    clearInterval(hitungMundur);
+                    timerBox.innerText = "EXPIRED";
+                    btnBayar.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i>Sesi Kedaluwarsa';
+                    alert('Waktu habis! Silakan muat ulang halaman untuk memesan kembali.');
+                }
+                totalDetik--;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

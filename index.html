@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Pengaturan karakter dan viewport untuk responsivitas di perangkat seluler -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Judul tab browser -->
+    <title>JagaMental | Platform Edukasi & Self-Care</title>
+
+    <!-- Memuat file CSS dari Bootstrap 5 untuk styling tata letak dengan cepat -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Memuat ikon dari Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Memuat file CSS kustom (opsional, jika ada penyesuaian gaya tambahan) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #f4fbfb;">
+
+    <!-- =========================
+         BAGIAN NAVIGASI (NAVBAR)
+         ========================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #4db6ac;">
+        <div class="container">
+            <!-- Logo dan Nama Brand -->
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i> JagaMental
+            </a>
+            
+            <!-- Tombol hamburger untuk tampilan mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Daftar menu navigasi -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-semibold">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="artikel.html">Artikel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tracker.html">Mood Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bantuan.html">Bantuan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="konseling.html">konseling</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================
+         FITUR JAM REAL-TIME
+         ========================= -->
+    <!-- Elemen ini kemungkinan diperbarui secara dinamis oleh script.js -->
+    <div class="clock" style="background: #e7f8f5; text-align: center; padding: 10px; font-weight: bold;">
+        <span id="jam">🕒 00:00:00</span>
+    </div>
+
+    <!-- =========================
+         BAGIAN HERO / BANNER UTAMA
+         ========================= -->
+    <section class="hero py-5" style="background: linear-gradient(to right, #d7f3ef, #eefcfb);">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Teks Hero -->
+                <div class="col-lg-6">
+                    <h1 id="sapaan" style="color: #2e7d7a; font-weight: bold;">Selamat Datang di JagaMental</h1>
+                    <p class="my-4">
+                        Mulailah Perjalanan Menuju Kesehatan Mental yang Lebih Baik. Pahami emosimu, tingkatkan kesadaran diri, dan temukan berbagai sumber edukasi serta dukungan.
+                    </p>
+                    <!-- Tombol Call-to-Action (CTA) -->
+                    <a href="tracker.html" class="btn btn-lg text-white" style="background-color: #26a69a;" id="moodBtn">
+                        Mulai Mood Tracker
+                    </a>
+                </div>
+                <!-- Gambar Hero -->
+                <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800" class="img-fluid rounded-4 shadow" alt="Mental Health">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         BAGIAN TENTANG
+         ========================= -->
+    <section class="container py-5">
+        <h2 class="fw-bold" style="color: #2e7d7a;">Tentang JagaMental</h2>
+        <p>Platform edukasi dan self-care tracker untuk membantu memahami kesehatan mental, mencatat mood harian, dan memperoleh tips menjaga kesejahteraan psikologis.</p>
+    </section>
+
+    <!-- =========================
+         BAGIAN FAKTA (GRID KARTU)
+         ========================= -->
+    <section class="container py-5">
+        <h2 class="mb-4 fw-bold" style="color: #2e7d7a;">📊 Fakta Kesehatan Mental</h2>
+        <div class="row g-4">
+            <!-- Kartu Fakta 1 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">34,9%</h3>
+                    <p class="mb-0">Remaja Indonesia pernah mengalami masalah kesehatan mental.</p>
+                </div>
+            </div>
+            <!-- Kartu Fakta 2 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">1 dari 8</h3>
+                    <p class="mb-0">Orang di dunia mengalami gangguan kesehatan mental.</p>
+                </div>
+            </div>
+            <!-- Kartu Fakta 3 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">🌿 Self Care</h3>
+                    <p class="mb-0">Istirahat, olahraga, dan berbagi cerita membantu menjaga kesehatan mental.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         BAGIAN TIPS HARI INI
+         ========================= -->
+    <section class="container py-4">
+        <h2 class="fw-bold" style="color: #2e7d7a;">💙 Tips Hari Ini</h2>
+        <div class="card p-4 mt-3 shadow-sm border-0" style="background-color: #e7f8f5;">
+            <!-- Teks tips ini kemungkinan bisa diubah secara dinamis melalui JavaScript (berdasarkan id="tips") -->
+            <h4 id="tips" class="mb-0 text-center" style="color: #1f8a80;">Luangkan waktu 10 menit untuk dirimu sendiri.</h4>
+        </div>
+    </section>
+
+    <!-- =========================
+         BAGIAN ARTIKEL TERBARU
+         ========================= -->
+    <section class="container py-5">
+        <h2 class="mb-4 fw-bold" style="color: #2e7d7a;">Artikel Terbaru</h2>
+        <div class="row g-4">
+            <!-- Kartu Artikel 1 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-0">
+                    <h5 class="fw-bold">5 Cara Mengurangi Stres</h5>
+                    <p class="text-muted mb-0">Langkah sederhana agar pikiran tetap tenang.</p>
+                </div>
+            </div>
+            <!-- Kartu Artikel 2 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-0">
+                    <h5 class="fw-bold">Pentingnya Tidur Berkualitas</h5>
+                    <p class="text-muted mb-0">Tidur cukup membantu kesehatan mental.</p>
+                </div>
+            </div>
+            <!-- Kartu Artikel 3 -->
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-0">
+                    <h5 class="fw-bold">Latihan Pernapasan</h5>
+                    <p class="text-muted mb-0">Teknik sederhana mengurangi kecemasan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         BAGIAN FOOTER
+         ========================= -->
+    <footer class="text-center text-white py-4 mt-5" style="background-color: #4db6ac;">
+        <div class="container">
+            <p class="mb-0">© 2026 JagaMental | Platform Edukasi & Self-Care Tracker</p>
+        </div>
+    </footer>
+
+    <!-- =========================
+         FILE JAVASCRIPT
+         ========================= -->
+    <!-- Memuat JavaScript Bootstrap untuk fungsionalitas seperti navbar collapse (hamburger menu) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Memuat JavaScript kustom untuk interaktivitas (seperti jam real-time dan sapaan dinamis) -->
+    <script src="script.js"></script>
+</body>
+</html>

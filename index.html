@@ -23,10 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto fw-semibold">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="edukasi.html">Edukasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="artikel.html">Artikel</a></li>
                     <li class="nav-item"><a class="nav-link" href="tracker.html">Mood Tracker</a></li>
                     <li class="nav-item"><a class="nav-link" href="bantuan.html">Bantuan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pembayaran.html">Pembayaran</a></li>
+                    <li class="nav-item"><a class="nav-link" href="konseling.html">Konseling</a></li>
                 </ul>
             </div>
         </div>
@@ -91,30 +91,6 @@
         </div>
     </section>
 
-    <section class="container py-5">
-        <h2 class="mb-4 fw-bold" style="color: #2e7d7a;">Artikel Terbaru</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm border-0">
-                    <h5 class="fw-bold">5 Cara Mengurangi Stres</h5>
-                    <p class="text-muted mb-0">Langkah sederhana agar pikiran tetap tenang.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm border-0">
-                    <h5 class="fw-bold">Pentingnya Tidur Berkualitas</h5>
-                    <p class="text-muted mb-0">Tidur cukup membantu kesehatan mental.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm border-0">
-                    <h5 class="fw-bold">Latihan Pernapasan</h5>
-                    <p class="text-muted mb-0">Teknik sederhana mengurangi kecemasan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer class="text-center text-white py-4 mt-5" style="background-color: #4db6ac;">
         <div class="container">
             <p class="mb-0">© 2026 JagaMental | Platform Edukasi & Self-Care Tracker</p>
@@ -148,7 +124,7 @@
         // Fungsi menampilkan jam digital dengan format standar (titik dua ':')
         function tampilkanJam(){
             const sekarang = new Date();
-            const waktu = sekarang.toLocaleTimeString('id-ID').replace(/\./g, ':');
+            const waktu = Clinical = sekarang.toLocaleTimeString('id-ID').replace(/\./g, ':');
             
             const elemenJam = document.getElementById("jam");
             if (elemenJam) {

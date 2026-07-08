@@ -1,86 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JagaMental | Artikel</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JagaMental | Platform Edukasi & Self-Care</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    background:#f4fbfb;
-}
-
-header{
-    background:#4db6ac;
-    color:white;
-    text-align:center;
-    padding:25px;
-}
-
-main{
-    width:80%;
-    max-width:900px;
-    margin:40px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
-
-img{
-    width:100%;
-    border-radius:12px;
-    margin:20px 0;
-}
-
-h2{
-    color:#4db6ac;
-    margin-bottom:15px;
-}
-
-p{
-    color:#555;
-    line-height:1.8;
-    text-align:justify;
-    margin-bottom:15px;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    background:#4db6ac;
-    color:white;
-    padding:12px 22px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.btn:hover{
-    background:#399b92;
-}
-
-footer{
-    margin-top:30px;
-    background:#4db6ac;
-    color:white;
-    text-align:center;
-    padding:18px;
-}
-
-</style>
-
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body style="background-color: #f4fbfb;">
 
@@ -94,72 +22,169 @@ footer{
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto fw-semibold">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="edukasi.html">Edukasi</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="artikel.html">Artikel</a></li>
                     <li class="nav-item"><a class="nav-link" href="tracker.html">Mood Tracker</a></li>
                     <li class="nav-item"><a class="nav-link" href="bantuan.html">Bantuan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pembayaran.html">Pembayaran</a></li>
+                    <li class="nav-item"><a class="nav-link" href="konseling.html">Konseling</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <div class="clock" style="background: #e7f8f5; text-align: center; padding: 10px; font-weight: bold;">
+        <span id="jam">🕒 00:00:00</span>
+    </div>
 
-<body>
-    
-<main>
+    <section class="hero py-5" style="background: linear-gradient(to right, #d7f3ef, #eefcfb);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 id="sapaan" style="color: #2e7d7a; font-weight: bold;">Selamat Datang di JagaMental</h1>
+                    <p class="my-4">
+                        Mulailah Perjalanan Menuju Kesehatan Mental yang Lebih Baik. Pahami emosimu, tingkatkan kesadaran diri, dan temukan berbagai sumber edukasi serta dukungan.
+                    </p>
+                    <a href="tracker.html" class="btn btn-lg text-white" style="background-color: #26a69a;" id="moodBtn">
+                        Mulai Mood Tracker
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800" class="img-fluid rounded-4 shadow" alt="Mental Health">
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2>Pentingnya Menjaga Kesehatan Mental di Era Digital</h2>
+    <section class="container py-5">
+        <h2 class="fw-bold" style="color: #2e7d7a;">Tentang JagaMental</h2>
+        <p>Platform edukasi dan self-care tracker untuk membantu memahami kesehatan mental, mencatat mood harian, dan memperoleh tips menjaga kesejahteraan psikologis.</p>
+    </section>
 
-<p><b>Dipublikasikan:</b> 7 Juli 2026</p>
+    <section class="container py-5">
+        <h2 class="mb-4 fw-bold" style="color: #2e7d7a;">📊 Fakta Kesehatan Mental</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">34,9%</h3>
+                    <p class="mb-0">Remaja Indonesia pernah mengalami masalah kesehatan mental.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">1 dari 8</h3>
+                    <p class="mb-0">Orang di dunia mengalami gangguan kesehatan mental.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 text-center shadow-sm border-0">
+                    <h3 style="color: #26a69a;">🌿 Self Care</h3>
+                    <p class="mb-0">Istirahat, olahraga, dan berbagi cerita membantu menjaga kesehatan mental.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<img src="mental.jpg" alt="Kesehatan Mental">
+    <section class="container py-4">
+        <h2 class="fw-bold" style="color: #2e7d7a;">💙 Tips Hari Ini</h2>
+        <div class="card p-4 mt-3 shadow-sm border-0" style="background-color: #e7f8f5;">
+            <h4 id="tips" class="mb-0 text-center" style="color: #1f8a80;">Luangkan waktu 10 menit untuk dirimu sendiri.</h4>
+        </div>
+    </section>
 
-<p>
-Kesehatan mental merupakan bagian penting dari kesehatan secara keseluruhan.
-Seseorang yang memiliki kondisi mental yang baik akan lebih mampu
-menghadapi tekanan hidup, mengendalikan emosi, serta membangun hubungan
-yang positif dengan orang lain.
-</p>
+    <footer class="text-center text-white py-4 mt-5" style="background-color: #4db6ac;">
+        <div class="container">
+            <p class="mb-0">© 2026 JagaMental | Platform Edukasi & Self-Care Tracker</p>
+        </div>
+    </footer>
 
-<p>
-Di era digital saat ini, penggunaan media sosial yang berlebihan dapat
-menyebabkan stres, kecemasan, bahkan menurunkan rasa percaya diri.
-Membandingkan diri dengan kehidupan orang lain yang terlihat di media
-sosial sering kali membuat seseorang merasa kurang bersyukur terhadap
-kehidupannya sendiri.
-</p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<p>
-Untuk menjaga kesehatan mental, kita dapat melakukan berbagai kegiatan
-positif seperti tidur yang cukup, rutin berolahraga, mengonsumsi makanan
-bergizi, meluangkan waktu untuk hobi, serta berbicara dengan keluarga atau
-teman ketika menghadapi masalah. Aktivitas tersebut dapat membantu
-mengurangi tekanan dan meningkatkan suasana hati.
-</p>
+    <script>
+        // Fungsi menampilkan sapaan otomatis berdasarkan waktu saat ini
+        function tampilkanSapaan(){
+            const jam = new Date().getHours();
+            let teks = "";
 
-<p>
-Apabila rasa stres atau kecemasan berlangsung dalam waktu yang lama,
-jangan ragu untuk mencari bantuan dari psikolog atau konselor.
-Meminta bantuan bukanlah tanda kelemahan, melainkan bentuk kepedulian
-terhadap diri sendiri agar kualitas hidup tetap terjaga.
-</p>
+            if (jam < 12) {
+                teks = "🌞 Selamat Pagi";
+            } else if (jam < 15) {
+                teks = "☀️ Selamat Siang";
+            } else if (jam < 18) {
+                teks = "🌤️ Selamat Sore";
+            } else {
+                teks = "🌙 Selamat Malam";
+            }
 
-<p>
-Dengan menjaga kesehatan mental, seseorang dapat berpikir lebih jernih,
-mengambil keputusan dengan baik, serta menjalani aktivitas sehari-hari
-dengan lebih produktif dan bahagia.
-</p>
+            const elemenSapaan = document.getElementById("sapaan");
+            if (elemenSapaan) {
+                elemenSapaan.innerHTML = `${teks}<br>Selamat Datang di JagaMental`;
+            }
+        }
 
-<a href="index.html" class="btn">← Kembali ke Beranda</a>
+        // Fungsi menampilkan jam digital dengan format standar (titik dua ':')
+        function tampilkanJam(){
+            const sekarang = new Date();
+            const waktu = Clinical = sekarang.toLocaleTimeString('id-ID').replace(/\./g, ':');
+            
+            const elemenJam = document.getElementById("jam");
+            if (elemenJam) {
+                elemenJam.textContent = "🕒 " + waktu;
+            }
+        }
 
-</main>
+        // Data array tips kesehatan mental
+        const tips = [
+            "😊 Luangkan waktu 10 menit untuk dirimu.",
+            "🌿 Minum air putih yang cukup hari ini.",
+            "💙 Ceritakan perasaanmu kepada orang yang dipercaya.",
+            "😴 Tidur minimal 7-8 jam setiap malam.",
+            "🚶 Jalan santai selama 15 menit dapat memperbaiki suasana hati."
+        ];
+        
+        let index = 0;
 
-<footer>
+        // Fungsi mengganti teks tips secara bergiliran
+        function gantiTips() {
+            index = (index + 1) % tips.length; // Menggunakan modulus agar otomatis reset ke 0 saat array habis
+            const elemenTips = document.getElementById("tips");
+            if (elemenTips) {
+                elemenTips.textContent = tips[index];
+            }
+        }
 
-<p>© 2026 JagaMental | Platform Edukasi & Self-Care</p>
+        // Inisialisasi utama setelah struktur dokumen HTML siap di-render browser
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // Panggil fungsi sekali di awal agar data langsung muncul tanpa delay
+            tampilkanSapaan();
+            tampilkanJam();
 
-</footer>
+            // Atur waktu berjalannya jam digital dan rotasi tips
+            setInterval(tampilkanJam, 1000);
+            setInterval(gantiTips, 5000);
 
+            // Handler interaksi tombol mood tracker
+            const moodBtn = document.getElementById("moodBtn");
+            if (moodBtn) {
+                moodBtn.onclick = function(e) {
+                    // Berikan prompt pertanyaan sebelum user diarahkan ke halaman tracker.html
+                    let mood = prompt("Bagaimana perasaanmu hari ini? 😊");
+                    
+                    if (mood !== null && mood.trim() !== "") {
+                        alert("Terima kasih sudah berbagi.\nSemoga harimu semakin baik 💙");
+                        // Biarkan aksi bawaan berjalan (pindah ke tracker.html) setelah tombol OK di klik
+                    } else {
+                        // Jika user mengosongkan teks atau klik batal, batalkan perpindahan halaman
+                        e.preventDefault(); 
+                    }
+                };
+            }
+
+            // Tampilkan alert selamat datang sesaat setelah halaman terbuka
+            setTimeout(() => {
+                alert("Selamat datang di JagaMental 🌿\nIngat, kesehatan mental sama pentingnya dengan kesehatan fisik.");
+            }, 500);
+        });
+    </script>
 </body>
 </html>

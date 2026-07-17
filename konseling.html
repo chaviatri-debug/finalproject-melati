@@ -95,6 +95,7 @@
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #4db6ac;">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
@@ -115,6 +116,7 @@
         </div>
     </nav>
 
+    <!-- Konten utama -->
     <div class="container my-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-7">
@@ -126,10 +128,32 @@
                         <p class="text-muted small">Isi formulir singkat di bawah untuk mensimulasikan pendaftaran sesi curhat yang aman dan terjaga kerahasiaannya.</p>
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="form-label fw-bold text-secondary"><i class="bi bi-person-fill me-2"></i>Nama Lengkap / Inisial</label>
-                        <input type="text" class="form-control form-control-lg" placeholder="Contoh: Cahyani">
-                    </div>
+                    <form id="formKonseling">
+                        <div class="mb-3">
+                            <label for="namaLengkap" class="form-label fw-semibold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan nama lengkap Anda" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="noWhatsapp" class="form-label fw-semibold">Nomor WhatsApp (Aktif)</label>
+                            <input type="tel" class="form-control" id="noWhatsapp" placeholder="Contoh: 081234567890" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="emailUser" class="form-label fw-semibold">Alamat Email</label>
+                            <input type="email" class="form-control" id="emailUser" placeholder="nama@email.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tanggalKonseling" class="form-label fw-semibold">Pilih Tanggal Konseling</label>
+                            <input type="date" class="form-control" id="tanggalKonseling" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="keluhanUser" class="form-label fw-semibold">Ceritakan Keluhan Singkat Anda</label>
+                            <textarea class="form-control" id="keluhanUser" rows="4" placeholder="Tuliskan apa yang sedang Anda rasakan atau masalah yang ingin dikonsultasikan..." required></textarea>
+                        </div>
+                    </form>
 
                     <div class="mb-4">
                         <label class="form-label fw-bold text-secondary mb-3">
@@ -214,6 +238,7 @@
     </footer>
 
     <script>
+        // kata kunci yang digunakan untuk menyimpan data
         const textTotal = document.getElementById('textTotal');
         const btnBayar = document.getElementById('btnBayar');
         const areaQRIS = document.getElementById('areaQRIS');
@@ -226,14 +251,14 @@
                 // 1. Hilangkan efek aktif dari semua kartu terlebih dahulu
                 kartuPaket.forEach(c => c.classList.remove('active-paket'));
                 
-                // 2. Tambahkan efek aktif ke kartu yang baru saja diklik
+                // 2. Tambahkan efek aktif ke kartu yang baru saja diklik || fungsinya menghapus or menambahkan class CSS
                 this.classList.add('active-paket');
                 
                 // 3. Ambil radio button di dalam kartu ini dan centang otomatis
                 const radio = this.querySelector('input[type="radio"]');
                 radio.checked = true;
                 
-                // 4. Update harga di kotak total tagihan
+                // 4. Update harga di kotak total tagihan || let digunakan untuk data yang bisa diubah nilainya || parseint mengubah string menjadi integer
                 let harga = parseInt(radio.value) || 0;
                 textTotal.innerText = "Rp" + harga.toLocaleString('id-ID');
             });
@@ -241,12 +266,37 @@
 
         // Trigger Pembayaran & Timer 1 Jam
         btnBayar.addEventListener('click', function() {
-            areaQRIS.classList.remove('d-none');
+            //Ambil elemen pendaftaran
+            const form = document.getElementById('formKonseling');
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            const paketTerpilih = document.querySelector('input[name="paketOpsi"]:checked');
+            let harga = parseInt(paketTerpilih.value) || 0;
+
+            // Percabangan untuk menampilkan area QRIS atau langsung menampilkan pesan sukses jika gratis
+            if (harga === 0) {
+                areaQRIS.classList.add('d-none');
+
+                btnBayar.disabled = true;
+                btnBayar.className = 'btn btn-success w-100 fw-bold py-3 fs-5 shadow';
+                btnBayar.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Pendaftaran Berhasil!';
+
+                alert('Pendaftaran Berhasil! >Kan ini gratis, jadi ngga bayar bro! Silakan cek email/WhatsApp Anda untuk tautan Zoom.')
+            } else {
+                areaQRIS.classList.remove('d-none');
+            }
+
+            // Nonaktifkan tombol bayar agar tidak bisa diklik lagi
             btnBayar.disabled = true;
+            btnBayar.className = 'btn btn-danger w-100 fw-bold py-3 fs-5 shadow';
             btnBayar.innerHTML = '<i class="bi bi-lock-fill me-2"></i>Menunggu Pembayaran...';
 
             let totalDetik = 60 * 60; // 1 Jam = 3600 detik
             const hitungMundur = setInterval(() => {
+                // Hitung jam, menit, detik dari totalDetik || fungsi Math.floor untuk membulatkan ke bawah || operator modulus % untuk mendapatkan sisa bagi
                 let jam = Math.floor(totalDetik / 3600);
                 let menit = Math.floor((totalDetik % 3600) / 60);
                 let detik = totalDetik % 60;

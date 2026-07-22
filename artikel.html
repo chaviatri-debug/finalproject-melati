@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JagaMental | Platform Edukasi & Self-Care</title>
-
+    <title>Artikel | JagaMental</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
-    
+    <style>
+        .card-art{border:none;border-radius:16px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;height:100%;}
+        .card-art:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08);}
+        .cat-pill{border-radius:999px;}
+        .navbar-nav .nav-link.active{font-weight:700;text-decoration:underline;text-underline-offset:6px;}
+    </style>
 </head>
 <body style="background-color: #f4fbfb;">
-
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #4db6ac;">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
@@ -22,8 +24,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto fw-semibold">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="artikel.html">Artikel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="artikel.html">Artikel</a></li>
                     <li class="nav-item"><a class="nav-link" href="tracker.html">Mood Tracker</a></li>
                     <li class="nav-item"><a class="nav-link" href="bantuan.html">Bantuan</a></li>
                     <li class="nav-item"><a class="nav-link" href="konseling.html">Konseling</a></li>
@@ -32,159 +34,221 @@
         </div>
     </nav>
 
-    <div class="clock" style="background: #e7f8f5; text-align: center; padding: 10px; font-weight: bold;">
-        <span id="jam">🕒 00:00:00</span>
-    </div>
+    <main class="container my-4" style="min-height: 60vh;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+            <div>
+                <h1 class="h3 fw-bold mb-1">Artikel & Cerita</h1>
+                <p class="text-muted mb-0 small">Bacaan seputar kesehatan jiwa, ditulis bersama komunitas.</p>
+            </div>
+            <button class="btn text-white" style="background-color:#4db6ac;" data-bs-toggle="modal" data-bs-target="#formModal">
+                <i class="bi bi-pencil-square"></i> Bagikan Artikel
+            </button>
+        </div>
 
-    <section class="hero py-5" style="background: linear-gradient(to right, #d7f3ef, #eefcfb);">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 id="sapaan" style="color: #2e7d7a; font-weight: bold;">Selamat Datang di JagaMental</h1>
-                    <p class="my-4">
-                        Mulailah Perjalanan Menuju Kesehatan Mental yang Lebih Baik. Pahami emosimu, tingkatkan kesadaran diri, dan temukan berbagai sumber edukasi serta dukungan.
-                    </p>
-                    <a href="tracker.html" class="btn btn-lg text-white" style="background-color: #26a69a;" id="moodBtn">
-                        Mulai Mood Tracker
-                    </a>
-                </div>
-                <div class="col-lg-6 text-center mt-4 mt-lg-0">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800" class="img-fluid rounded-4 shadow" alt="Mental Health">
-                </div>
+        <div class="d-flex flex-wrap gap-2 align-items-center mb-4">
+            <div id="catPills" class="d-flex flex-wrap gap-2"></div>
+            <div class="ms-md-auto" style="min-width:220px;">
+                <input type="text" id="searchInput" class="form-control cat-pill" placeholder="Cari artikel...">
             </div>
         </div>
-    </section>
 
-    <section class="container py-5">
-        <h2 class="fw-bold" style="color: #2e7d7a;">Tentang JagaMental</h2>
-        <p>Platform edukasi dan self-care tracker untuk membantu memahami kesehatan mental, mencatat mood harian, dan memperoleh tips menjaga kesejahteraan psikologis.</p>
-    </section>
-
-    <section class="container py-5">
-        <h2 class="mb-4 fw-bold" style="color: #2e7d7a;">📊 Fakta Kesehatan Mental</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-4 h-100 text-center shadow-sm border-0">
-                    <h3 style="color: #26a69a;">34,9%</h3>
-                    <p class="mb-0">Remaja Indonesia pernah mengalami masalah kesehatan mental.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 text-center shadow-sm border-0">
-                    <h3 style="color: #26a69a;">1 dari 8</h3>
-                    <p class="mb-0">Orang di dunia mengalami gangguan kesehatan mental.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 text-center shadow-sm border-0">
-                    <h3 style="color: #26a69a;">🌿 Self Care</h3>
-                    <p class="mb-0">Istirahat, olahraga, dan berbagi cerita membantu menjaga kesehatan mental.</p>
-                </div>
-            </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="articleGrid"></div>
+        <div id="emptyState" class="alert alert-light border text-center mt-4 d-none" style="border-radius:16px;">
+            Belum ada artikel untuk topik ini. Jadilah yang pertama berbagi.
         </div>
-    </section>
-
-    <section class="container py-4">
-        <h2 class="fw-bold" style="color: #2e7d7a;">💙 Tips Hari Ini</h2>
-        <div class="card p-4 mt-3 shadow-sm border-0" style="background-color: #e7f8f5;">
-            <h4 id="tips" class="mb-0 text-center" style="color: #1f8a80;">Luangkan waktu 10 menit untuk dirimu sendiri.</h4>
-        </div>
-    </section>
+    </main>
 
     <footer class="text-center text-white py-4 mt-5" style="background-color: #4db6ac;">
-        <div class="container">
-            <p class="mb-0">© 2026 JagaMental | Platform Edukasi & Self-Care Tracker</p>
-        </div>
+        <div class="container"><p class="mb-0">© 2026 JagaMental | Platform Edukasi & Self-Care Tracker</p></div>
     </footer>
 
+    <!-- Modal: Detail Artikel -->
+    <div class="modal fade" id="articleModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content" style="border-radius:18px;">
+          <div class="modal-header border-0">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body pt-0" id="articleModalBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Form Tambah Artikel -->
+    <div class="modal fade" id="formModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius:18px;">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-bold">Bagikan Artikel / Cerita</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body pt-0">
+            <div class="alert alert-light border small" style="border-radius:12px;">
+              Tulisanmu akan tayang untuk pengunjung lain di perangkat ini. Untuk keamanan bersama, hindari menyebut detail spesifik metode menyakiti diri — fokuskan cerita pada perasaan, proses, dan cara mencari bantuan.
+            </div>
+            <form id="articleForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">Judul *</label>
+                  <input type="text" class="form-control" id="f_title" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">Topik *</label>
+                  <select class="form-select" id="f_category" required></select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">Nama Penulis *</label>
+                  <input type="text" class="form-control" id="f_author" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">URL Gambar Sampul</label>
+                  <input type="url" class="form-control" id="f_image" placeholder="https://...">
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f_anon">
+                    <label class="form-check-label small" for="f_anon">Tampilkan sebagai kontributor anonim</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label small fw-semibold">Ringkasan singkat *</label>
+                  <input type="text" class="form-control" id="f_excerpt" required maxlength="160">
+                </div>
+                <div class="col-12">
+                  <label class="form-label small fw-semibold">URL Video (opsional)</label>
+                  <input type="url" class="form-control" id="f_video" placeholder="https://youtube.com/watch?v=... atau .mp4">
+                </div>
+                <div class="col-12">
+                  <label class="form-label small fw-semibold">Isi Artikel/Cerita *</label>
+                  <textarea class="form-control" id="f_content" rows="5" required></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn text-white mt-3 px-4" style="background-color:#4db6ac;">Bagikan ke Komunitas</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+      <div id="mainToast" class="toast align-items-center text-white border-0" style="background-color:#4db6ac;" role="alert">
+        <div class="d-flex">
+          <div class="toast-body" id="toastBody">Berhasil.</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="data.js"></script>
     <script>
-        // Fungsi menampilkan sapaan otomatis berdasarkan waktu saat ini
-        function tampilkanSapaan(){
-            const jam = new Date().getHours();
-            let teks = "";
+      let activeCategory = "Semua";
+      let searchTerm = "";
 
-            if (jam < 12) {
-                teks = "🌞 Selamat Pagi";
-            } else if (jam < 15) {
-                teks = "☀️ Selamat Siang";
-            } else if (jam < 18) {
-                teks = "🌤️ Selamat Sore";
-            } else {
-                teks = "🌙 Selamat Malam";
-            }
+      function showToast(msg){
+        document.getElementById('toastBody').textContent = msg;
+        new bootstrap.Toast(document.getElementById('mainToast')).show();
+      }
 
-            const elemenSapaan = document.getElementById("sapaan");
-            if (elemenSapaan) {
-                elemenSapaan.innerHTML = `${teks}<br>Selamat Datang di JagaMental`;
-            }
-        }
+      function renderCatPills(){
+        const cats = ["Semua", ...CATEGORIES];
+        document.getElementById('catPills').innerHTML = cats.map(c => `
+          <button class="btn btn-sm cat-pill ${c===activeCategory ? 'text-white' : 'btn-outline-secondary'}"
+            style="${c===activeCategory ? 'background-color:#4db6ac;' : ''}"
+            onclick="setCategory('${c}')">${c}</button>`).join('');
+      }
+      function setCategory(c){ activeCategory = c; render(); }
 
-        // Fungsi menampilkan jam digital dengan format standar (titik dua ':')
-        function tampilkanJam(){
-            const sekarang = new Date();
-            const waktu = Clinical = sekarang.toLocaleTimeString('id-ID').replace(/\./g, ':');
-            
-            const elemenJam = document.getElementById("jam");
-            if (elemenJam) {
-                elemenJam.textContent = "🕒 " + waktu;
-            }
-        }
+      function filtered(){
+        return getArticles().filter(a=>{
+          const catOk = activeCategory==="Semua" || a.category===activeCategory;
+          const s = searchTerm.toLowerCase();
+          const searchOk = !s || a.title.toLowerCase().includes(s) || a.excerpt.toLowerCase().includes(s);
+          return catOk && searchOk;
+        }).sort((a,b)=> new Date(b.date)-new Date(a.date));
+      }
 
-        // Data array tips kesehatan mental
-        const tips = [
-            "😊 Luangkan waktu 10 menit untuk dirimu.",
-            "🌿 Minum air putih yang cukup hari ini.",
-            "💙 Ceritakan perasaanmu kepada orang yang dipercaya.",
-            "😴 Tidur minimal 7-8 jam setiap malam.",
-            "🚶 Jalan santai selama 15 menit dapat memperbaiki suasana hati."
-        ];
-        
-        let index = 0;
+      function render(){
+        renderCatPills();
+        const list = filtered();
+        const grid = document.getElementById('articleGrid');
+        const empty = document.getElementById('emptyState');
+        if(list.length===0){ grid.innerHTML=''; empty.classList.remove('d-none'); return; }
+        empty.classList.add('d-none');
+        grid.innerHTML = list.map(a=>`
+          <div class="col">
+            <div class="card card-art p-3" onclick="openArticle('${a.id}')">
+              <img src="${a.image||'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=80'}" class="card-img-top mb-2" style="height:150px;object-fit:cover;border-radius:12px;">
+              <span class="badge rounded-pill mb-2 align-self-start" style="background:#e0f2f1;color:#4db6ac;">${a.category}</span>
+              <h3 class="h6 fw-bold">${a.title} ${a.video?'<i class="bi bi-play-circle-fill" style="color:#4db6ac;"></i>':''}</h3>
+              <p class="small text-muted mb-1">${a.excerpt}</p>
+              <p class="small text-muted mb-0"><i class="bi bi-person-circle"></i> ${a.author} · ${fmtDate(a.date)}</p>
+            </div>
+          </div>`).join('');
+      }
 
-        // Fungsi mengganti teks tips secara bergiliran
-        function gantiTips() {
-            index = (index + 1) % tips.length; // Menggunakan modulus agar otomatis reset ke 0 saat array habis
-            const elemenTips = document.getElementById("tips");
-            if (elemenTips) {
-                elemenTips.textContent = tips[index];
-            }
-        }
+      function openArticle(id){
+        const all = getArticles();
+        const a = all.find(x=>x.id===id);
+        if(!a) return;
+        const related = all.filter(x=>x.category===a.category && x.id!==a.id).slice(0,4);
+        document.getElementById('articleModalBody').innerHTML = `
+          <span class="badge rounded-pill mb-2" style="background:#e0f2f1;color:#4db6ac;">${a.category}</span>
+          <h2 class="h4 fw-bold">${a.title}</h2>
+          <p class="text-muted small">Oleh ${a.author} · ${fmtDate(a.date)}</p>
+          ${toEmbedMedia(a)}
+          <div class="mb-3">${a.content.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}</div>
+          ${related.length ? `
+            <hr>
+            <p class="small fw-semibold text-muted text-uppercase">Baca Juga — Topik ${a.category}</p>
+            <div class="row row-cols-1 row-cols-md-2 g-2 mb-3">
+              ${related.map(r=>`
+                <div class="col">
+                  <div class="p-2 rounded" style="background:#f4fbfb;cursor:pointer;" onclick="openArticle('${r.id}')">
+                    <span class="small text-muted">${fmtDate(r.date)}</span>
+                    <p class="small fw-semibold mb-0">${r.title}</p>
+                  </div>
+                </div>`).join('')}
+            </div>` : ''}
+          <div class="alert border-0 small" style="background:#fff3ea;color:#7a4a30;border-radius:12px;">
+            <strong>Merasa berat sendirian?</strong> Kamu tidak sendiri. Hubungi 119 ext. 8 (Healing119, gratis & 24 jam) — lihat <a href="bantuan.html">halaman Bantuan</a>.
+          </div>`;
+        new bootstrap.Modal(document.getElementById('articleModal')).show();
+      }
 
-        // Inisialisasi utama setelah struktur dokumen HTML siap di-render browser
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // Panggil fungsi sekali di awal agar data langsung muncul tanpa delay
-            tampilkanSapaan();
-            tampilkanJam();
+      document.getElementById('searchInput').addEventListener('input', e=>{
+        searchTerm = e.target.value; render();
+      });
 
-            // Atur waktu berjalannya jam digital dan rotasi tips
-            setInterval(tampilkanJam, 1000);
-            setInterval(gantiTips, 5000);
+      document.getElementById('articleForm').addEventListener('submit', e=>{
+        e.preventDefault();
+        const isAnon = document.getElementById('f_anon').checked;
+        const newArt = {
+          id: 'a'+Date.now(),
+          title: document.getElementById('f_title').value.trim(),
+          category: document.getElementById('f_category').value,
+          author: isAnon ? 'Kontributor Anonim' : document.getElementById('f_author').value.trim(),
+          image: document.getElementById('f_image').value.trim(),
+          excerpt: document.getElementById('f_excerpt').value.trim(),
+          video: document.getElementById('f_video').value.trim(),
+          content: document.getElementById('f_content').value.trim(),
+          date: new Date().toISOString()
+        };
+        addArticle(newArt);
+        e.target.reset();
+        bootstrap.Modal.getInstance(document.getElementById('formModal')).hide();
+        activeCategory = "Semua";
+        render();
+        showToast('Cerita berhasil dibagikan ✓');
+      });
 
-            // Handler interaksi tombol mood tracker
-            const moodBtn = document.getElementById("moodBtn");
-            if (moodBtn) {
-                moodBtn.onclick = function(e) {
-                    // Berikan prompt pertanyaan sebelum user diarahkan ke halaman tracker.html
-                    let mood = prompt("Bagaimana perasaanmu hari ini? 😊");
-                    
-                    if (mood !== null && mood.trim() !== "") {
-                        alert("Terima kasih sudah berbagi.\nSemoga harimu semakin baik 💙");
-                        // Biarkan aksi bawaan berjalan (pindah ke tracker.html) setelah tombol OK di klik
-                    } else {
-                        // Jika user mengosongkan teks atau klik batal, batalkan perpindahan halaman
-                        e.preventDefault(); 
-                    }
-                };
-            }
+      // Setup kategori di form
+      document.getElementById('f_category').innerHTML = CATEGORIES.map(c=>`<option value="${c}">${c}</option>`).join('');
 
-            // Tampilkan alert selamat datang sesaat setelah halaman terbuka
-            setTimeout(() => {
-                alert("Selamat datang di JagaMental 🌿\nIngat, kesehatan mental sama pentingnya dengan kesehatan fisik.");
-            }, 500);
-        });
+      // Buka langsung jika datang dari index.html?id=...
+      const params = new URLSearchParams(window.location.search);
+      render();
+      if(params.get('id')) openArticle(params.get('id'));
     </script>
 </body>
 </html>
